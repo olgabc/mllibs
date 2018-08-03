@@ -23,7 +23,7 @@ def partial_corr_df(dataframe):
     len_range = range(names_len)
 
     corr_matrix_np = np.array(corr_matrix)
-    cofactors_matrix = np.linalg.inv(corr_matrix_np)
+    corr_matrix_inversed = np.linalg.inv(corr_matrix_np)
     partial_corr_np = np.zeros((names_len, names_len))
 
     for i in len_range:
@@ -32,7 +32,7 @@ def partial_corr_df(dataframe):
                 partial_corr_np[i, j] = 1
             else:
                 partial_corr_np[i, j] = (
-                        -cofactors_matrix[i, j] / np.sqrt(cofactors_matrix[i, i] * cofactors_matrix[j, j])
+                        -corr_matrix_inversed[i, j] / np.sqrt(corr_matrix_inversed[i, i] * cofactors_matrix[j, j])
                 )
 
     partial_corr_df = pd.DataFrame(
