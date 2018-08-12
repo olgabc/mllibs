@@ -39,11 +39,8 @@ Compute partial correlation matrix
 
     corr_matrix = dataframe.corr()
 
-    class NaNValues(Exception):
-        pass
-
     if any(np.isnan(corr_matrix)):
-        raise NaNValues("dataframe.corr() has NaN values")
+        raise ValueError("dataframe.corr() has NaN values")
 
     names = corr_matrix.index
     names_len = len(names)
